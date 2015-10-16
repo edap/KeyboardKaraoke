@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "Lyric.h"
 #include "Score.h"
+#include "ofxDatGui.h"
+#include "States.h"
 
 class ofApp : public ofBaseApp{
 
@@ -11,7 +13,10 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+        void setupMenu();
+        void setupSong();
         void startSongFromBeginning();
+        void showFinalMenu();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -33,5 +38,9 @@ class ofApp : public ofBaseApp{
         Lyric           lyric;
         Score           score;
         ofTrueTypeFont	font;
+        states currentState;
+
+        ofxDatGuiDropdown* menu;
+        void onDropdownEvent(ofxDatGuiDropdownEvent e);
 		
 };

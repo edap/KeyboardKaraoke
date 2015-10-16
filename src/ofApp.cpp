@@ -8,23 +8,50 @@ void ofApp::setup(){
     colorTextTyped = ofColor(249,64,128);
     colorBgGradientFirst = ofColor(251,172,79);
     colorBgGradientSecond = ofColor(255,207,117);
-    player.setup("BohemianRhapsody.mp3");
-    lyric.setup("BohemianRhapsody.lrc", colorTextTyped, colorTextToType);
-    score.setup(lyric.textWithMilliseconds, colorTextTyped, colorTextToType);
+    player.setup();
+    currentState = INTRO;
+    setupMenu();
+}
+
+void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
+    setupSong();
+    currentState = PLAY;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    lyric.update(player.getTime());
-    player.update();
+    menu->update();
+
+    if(currentState == PLAY && player.songIsLoaded()){
+        if(player.songIsNotFinished()){
+            lyric.update(player.getTime());
+            player.update();
+        }else{
+            player.stop();
+            currentState == FINISHED;
+        }
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofBackgroundGradient(colorBgGradientFirst, colorBgGradientSecond, OF_GRADIENT_CIRCULAR);
-    player.draw();
-    lyric.draw();
-    score.draw();
+    switch (currentState) {
+        case INTRO:
+            menu->draw();
+            break;
+        case PLAY:
+            player.draw();
+            lyric.draw();
+            score.draw();
+            break;
+        case FINISHED:
+            showFinalMenu();
+            break;
+        default:
+            menu->draw();
+            break;
+    }
 }
 
 void ofApp::startSongFromBeginning(){
@@ -37,9 +64,35 @@ void ofApp::keyPressed  (int key){
     }
 }
 
+void ofApp::setupMenu(){
+    vector<string> options = {"BohemianRhapsody", "RadioGaga", "Biclycle"};
+
+    menu = new ofxDatGuiDropdown("SELECT A COLOR", options);
+    menu->setOrigin(ofGetWidth()/2 - menu->getWidth()/2, ofGetHeight()/2 - menu->getHeight()/2 - 100);
+    menu->setOrigin(ofGetWidth()/2 - menu->getWidth()/2, ofGetHeight()/2 - menu->getHeight()/2 - 100);
+
+    // let's set the stripe of each option to its respective color //
+    //for (int i=0; i<menu->size(); i++) menu->getChildAt(i)->setStripeColor(colors[i]);
+
+    menu->onDropdownEvent(this, &ofApp::onDropdownEvent);
+    // finally let's have it open by default //
+    menu->expand();
+}
+
+void ofApp::setupSong(){
+    player.loadSong("BohemianRhapsody.mp3");
+    lyric.setup("BohemianRhapsody.lrc", colorTextTyped, colorTextToType);
+    score.setup(lyric.textWithMilliseconds, colorTextTyped, colorTextToType);
+}
+
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     
+}
+
+void ofApp::showFinalMenu(){
+    //show a message with 2 button
+    // one for exit and one to go back to intro and choose another song
 }
 
 //--------------------------------------------------------------

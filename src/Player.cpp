@@ -8,10 +8,16 @@ void Player::play(){
     ofPlayer.play();
 }
 
-void Player::setup(string file){
-    ofPlayer.load(file);
+void Player::stop(){
+    // sofPlayer.stop() does not unload the sound
+    // and you are checking soundIsLoaded on each update
+    ofPlayer.unloadSound();
+}
+
+void Player::setup(){
     ofPlayer.setVolume(0.75f);
     ofPlayer.setMultiPlay(false);
+    ofPlayer.setSpeed(16.0);
     playerPostion = ofVec2f(0, 0);
 };
 
@@ -21,6 +27,18 @@ void Player::update(){
 
 int Player::getTime(){
     return ofPlayer.getPositionMS();
+};
+
+void Player::loadSong(string file){
+    ofPlayer.load(file);
+};
+
+bool Player::songIsNotFinished(){
+    return ofPlayer.getPosition() < 0.974;
+};
+
+bool Player::songIsLoaded(){
+    return ofPlayer.isLoaded();
 };
 
 void Player::draw(){

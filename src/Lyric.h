@@ -10,7 +10,6 @@ public:
     void setup(string filename, ofColor colorTextToType, ofColor colorTextTyped);
     void update(int time);
     void draw();
-
     bool letterCatched(int key);
     
     string currentSentence;

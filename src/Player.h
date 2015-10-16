@@ -5,11 +5,15 @@ class Player{
 
 public:
     Player();
-    void setup(string filename);
+    void setup();
     void play();
+    void stop();
     void update();
     void draw();
     int getTime();
+    void loadSong(string file);
+    bool songIsNotFinished();
+    bool songIsLoaded();
     ofVec2f playerPostion;
     bool debug = false;
     ofSoundPlayer ofPlayer;
