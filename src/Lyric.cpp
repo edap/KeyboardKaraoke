@@ -10,13 +10,26 @@ void Lyric::setup(string _filename, ofColor _colorTextToType, ofColor _colorText
     textWithMsIterator = textWithMilliseconds.begin();
     currentSentence = "";
     lyricsBoxHeight = 300;
-    font.load("BEBAS.ttf", 30);
-    font.setSpaceSize(6.0);
+    font.load("bebas.ttf", 30, true, false, true, 0.4, 72);
+    //font.setSpaceSize(6.0);
     //font.setLetterSpacing(1.0);
     center = ofVec2f(ofGetWidth()/2, ofGetHeight()/2);
     colorTextTyped = _colorTextTyped;
     colorTextToType = _colorTextToType;
-};
+    
+    
+    #ifdef TARGET_OPENGLES
+        shader.load("shaders_gles/noise.vert","shaders_gles/noise.frag");
+    #else
+        if(ofIsGLProgrammableRenderer()){
+            shader.load("shaders_gl3/noise.vert", "shaders_gl3/noise.frag");
+        }else{
+            shader.load("shaders/noise.vert", "shaders/noise.frag");
+        }
+    #endif
+        
+        doShader = true;
+    };
 
 void Lyric::update(int timeInMS){
     if (timeInMS >= textWithMsIterator->first) {
@@ -40,14 +53,29 @@ void Lyric::draw(){
         string toRead = currentSentence;
         ofSetColor(colorTextTyped.r, colorTextTyped.g,colorTextTyped.b);
         ofRectangle readBounds = font.getStringBoundingBox(toRead, 0, 0);
-        font.drawString(currentSentence, -readBounds.width/2, -readBounds.height );
+        if( doShader ){
+            shader.begin();
+            //we want to pass in some varrying values to animate our type / color
+            shader.setUniform1f("timeValX", ofGetElapsedTimef() * 0.1 );
+            shader.setUniform1f("timeValY", -ofGetElapsedTimef() * 0.18 );
+            
+            //we also pass in the mouse position
+            //we have to transform the coords to what the shader is expecting which is 0,0 in the center and y axis flipped.
+            shader.setUniform2f("mouse", ofGetWidth()/2, ofGetHeight()/2 );
+            
+        }
+        font.drawStringAsShapes(currentSentence, -readBounds.width/2, -readBounds.height );
+        if( doShader ){
+            shader.end();
+        }
     
         //typed sentence
         string strCorrect = typedSentenceCorrect.str();
         ofSetColor(colorTextToType.r, colorTextToType.g,colorTextToType.b);
         ofRectangle keyCorrectBounds = font.getStringBoundingBox(strCorrect, 0, 0);
         int strCorrectHalfWidth = + keyCorrectBounds.width/2;
-        font.drawString(strCorrect, -strCorrectHalfWidth, +readBounds.height);
+        //finally draw our text
+        font.drawStringAsShapes(strCorrect, -strCorrectHalfWidth, +readBounds.height);
     
         //errors
         positionCurrentSentence = ofVec2f(strCorrectHalfWidth, keyCorrectBounds.height/2);

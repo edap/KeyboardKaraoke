@@ -6,8 +6,8 @@ void ofApp::setup(){
     // use ofFmodSetBuffersize(bufferSize) to set the buffersize in fmodx prior to loading a file.
     colorTextToType = ofColor(54,166,144);
     colorTextTyped = ofColor(249,64,128);
-    colorBgGradientFirst = ofColor(251,172,79);
-    colorBgGradientSecond = ofColor(255,207,117);
+    colorBgGradientFirst = ofColor(255,207,117);
+    colorBgGradientSecond = ofColor(252,116,94);
     player.setup();
     currentState = INTRO;
     setupMenu();
@@ -80,6 +80,7 @@ void ofApp::setupMenu(){
 }
 
 void ofApp::setupSong(){
+    // http://en.cppreference.com/w/cpp/language/default_arguments
     player.loadSong("BohemianRhapsody.mp3");
     lyric.setup("BohemianRhapsody.lrc", colorTextTyped, colorTextToType);
     score.setup(lyric.textWithMilliseconds, colorTextTyped, colorTextToType);

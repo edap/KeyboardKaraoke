@@ -32,4 +32,6 @@ private:
     void load(string filename);
     void drawErrors();
     ofTrueTypeFont	font;
+    ofShader shader;
+    bool doShader;
 };

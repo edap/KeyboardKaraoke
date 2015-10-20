@@ -17,7 +17,7 @@ void Player::stop(){
 void Player::setup(){
     ofPlayer.setVolume(0.75f);
     ofPlayer.setMultiPlay(false);
-    ofPlayer.setSpeed(16.0);
+    //ofPlayer.setSpeed(16.0);
     playerPostion = ofVec2f(0, 0);
 };
 
