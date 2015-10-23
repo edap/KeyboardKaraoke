@@ -46,6 +46,9 @@ examples/**/[Rr]elease*/
 #audio files
 *.mp3
 
+#lrc files
+*.lrc
+
 #########################
 # IDE
 #########################
