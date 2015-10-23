@@ -10,7 +10,6 @@ varying vec2 texCoordVarying;
 
 uniform float timeValX;
 uniform float timeValY;
-uniform vec2 mouse;
 
 //generate a random value from four points
 vec4 rand(vec2 A,vec2 B,vec2 C,vec2 D){ 
@@ -59,31 +58,6 @@ void main(){
 	//generate noise for our blue pixel value
 	float noiseB = noise( vec2(timeValY * 0.25, pos.y / 2000.0), 20.0 );
 
-	//lets also figure out the distance between the mouse and the vertex and apply a repelling force away from the mouse
-	vec2 d = vec2(pos.x, pos.y) - mouse;
-	float len =  sqrt(d.x*d.x + d.y*d.y);
-	if( len < 300.0 && len > 0.0  ){
-		
-		//lets get the distance into 0-1 ranges
-		float pct = len / 300.0; 
-		
-		//this turns our linear 0-1 value into a curved 0-1 value
-		pct *= pct;
-
-		//flip it so the closer we are the greater the repulsion
-		pct = 1.0 - pct;
-		
-		//normalize our repulsion vector
-		d /= len;
-		
-		//apply the repulsion to our position
-		pos.x += d.x * pct * 90.0;
-		pos.y += d.y * pct * 90.0;
-	}
-
-	//modify our position with the smooth noise
-	pos.x += noiseAmntX * 20.0;
-	pos.y += noiseAmntY * 10.0;
 	
 	//finally set the pos to be that actual position rendered
 	gl_Position = pos;

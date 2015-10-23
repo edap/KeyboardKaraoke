@@ -65,9 +65,7 @@ void Lyric::draw(){
             
         }
         font.drawStringAsShapes(currentSentence, -readBounds.width/2, -readBounds.height );
-        if( doShader ){
-            shader.end();
-        }
+
     
         //typed sentence
         string strCorrect = typedSentenceCorrect.str();
@@ -80,6 +78,9 @@ void Lyric::draw(){
         //errors
         positionCurrentSentence = ofVec2f(strCorrectHalfWidth, keyCorrectBounds.height/2);
         drawErrors();
+        if( doShader ){
+            shader.end();
+        }
     
     ofPopMatrix();
 };
@@ -108,7 +109,7 @@ void Lyric::drawErrors(){
             float pct = Penner::easeInExpo(it->alpha, 0.0, 1.0, 255);
             it->update(pct);
             ofSetColor(colorTextToType.r, colorTextToType.g,colorTextToType.b, it->alpha);
-            font.drawString(it->strLetter, it->currentPosition.x, it->currentPosition.y);
+            font.drawStringAsShapes(it->strLetter, it->currentPosition.x, it->currentPosition.y);
         }
         
     }

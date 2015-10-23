@@ -59,6 +59,23 @@
 		318E7B99B75AD35356835BE9 /* ofxDatGuiTemplates.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiTemplates.h; path = ../../../addons/ofxDatGui/src/templates/ofxDatGuiTemplates.h; sourceTree = SOURCE_ROOT; };
 		422C4E1AAC7EC4D30B17702D /* ofxDatGuiIntObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiIntObject.h; path = ../../../addons/ofxDatGui/src/core/ofxDatGuiIntObject.h; sourceTree = SOURCE_ROOT; };
 		64C563B8158C37E9D07AE29D /* ofxDatGuiFRM.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiFRM.h; path = ../../../addons/ofxDatGui/src/components/ofxDatGuiFRM.h; sourceTree = SOURCE_ROOT; };
+		6F58DB5D1BD6DE4200B2EE75 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		6F58DB5E1BD6DE4200B2EE75 /* BEBAS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BEBAS.ttf; sourceTree = "<group>"; };
+		6F58DB5F1BD6DE4200B2EE75 /* BohemianRhapsody.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BohemianRhapsody.lrc; sourceTree = "<group>"; };
+		6F58DB601BD6DE4200B2EE75 /* BohemianRhapsody.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BohemianRhapsody.mp3; sourceTree = "<group>"; };
+		6F58DB621BD6DE4200B2EE75 /* font-verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "font-verdana.ttf"; sourceTree = "<group>"; };
+		6F58DB631BD6DE4200B2EE75 /* icon-dropdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-dropdown.png"; sourceTree = "<group>"; };
+		6F58DB641BD6DE4200B2EE75 /* icon-radio-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-radio-off.png"; sourceTree = "<group>"; };
+		6F58DB651BD6DE4200B2EE75 /* icon-radio-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-radio-on.png"; sourceTree = "<group>"; };
+		6F58DB661BD6DE4200B2EE75 /* picker-rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker-rainbow.png"; sourceTree = "<group>"; };
+		6F58DB681BD6DE4200B2EE75 /* noise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.frag; sourceTree = "<group>"; };
+		6F58DB691BD6DE4200B2EE75 /* noise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
+		6F58DB6B1BD6DE4200B2EE75 /* noise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.frag; sourceTree = "<group>"; };
+		6F58DB6C1BD6DE4200B2EE75 /* noise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
+		6F58DB6E1BD6DE4200B2EE75 /* noise.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.frag; sourceTree = "<group>"; };
+		6F58DB6F1BD6DE4200B2EE75 /* noise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
+		6F58DB701BD6DE4200B2EE75 /* verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = verdana.ttf; sourceTree = "<group>"; };
+		6F58DB711BD6DE4200B2EE75 /* KeyboardKaraokeDebug.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = KeyboardKaraokeDebug.app; sourceTree = "<group>"; };
 		6F878C8E1BCF0821007811F2 /* States.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = States.h; sourceTree = "<group>"; };
 		6FBEAC601BCEFFDB00A33DED /* Intro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Intro.cpp; sourceTree = "<group>"; };
 		6FBEAC611BCEFFDB00A33DED /* Intro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro.h; sourceTree = "<group>"; };
@@ -117,6 +134,70 @@
 				318E7B99B75AD35356835BE9 /* ofxDatGuiTemplates.h */,
 			);
 			name = templates;
+			sourceTree = "<group>";
+		};
+		6F58DB5B1BD6DE4200B2EE75 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				6F58DB5C1BD6DE4200B2EE75 /* data */,
+				6F58DB711BD6DE4200B2EE75 /* KeyboardKaraokeDebug.app */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		6F58DB5C1BD6DE4200B2EE75 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				6F58DB5D1BD6DE4200B2EE75 /* .gitkeep */,
+				6F58DB5E1BD6DE4200B2EE75 /* BEBAS.ttf */,
+				6F58DB5F1BD6DE4200B2EE75 /* BohemianRhapsody.lrc */,
+				6F58DB601BD6DE4200B2EE75 /* BohemianRhapsody.mp3 */,
+				6F58DB611BD6DE4200B2EE75 /* ofxdatgui_assets */,
+				6F58DB671BD6DE4200B2EE75 /* shaders */,
+				6F58DB6A1BD6DE4200B2EE75 /* shaders_gl3 */,
+				6F58DB6D1BD6DE4200B2EE75 /* shaders_gles */,
+				6F58DB701BD6DE4200B2EE75 /* verdana.ttf */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		6F58DB611BD6DE4200B2EE75 /* ofxdatgui_assets */ = {
+			isa = PBXGroup;
+			children = (
+				6F58DB621BD6DE4200B2EE75 /* font-verdana.ttf */,
+				6F58DB631BD6DE4200B2EE75 /* icon-dropdown.png */,
+				6F58DB641BD6DE4200B2EE75 /* icon-radio-off.png */,
+				6F58DB651BD6DE4200B2EE75 /* icon-radio-on.png */,
+				6F58DB661BD6DE4200B2EE75 /* picker-rainbow.png */,
+			);
+			path = ofxdatgui_assets;
+			sourceTree = "<group>";
+		};
+		6F58DB671BD6DE4200B2EE75 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				6F58DB681BD6DE4200B2EE75 /* noise.frag */,
+				6F58DB691BD6DE4200B2EE75 /* noise.vert */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		6F58DB6A1BD6DE4200B2EE75 /* shaders_gl3 */ = {
+			isa = PBXGroup;
+			children = (
+				6F58DB6B1BD6DE4200B2EE75 /* noise.frag */,
+				6F58DB6C1BD6DE4200B2EE75 /* noise.vert */,
+			);
+			path = shaders_gl3;
+			sourceTree = "<group>";
+		};
+		6F58DB6D1BD6DE4200B2EE75 /* shaders_gles */ = {
+			isa = PBXGroup;
+			children = (
+				6F58DB6E1BD6DE4200B2EE75 /* noise.frag */,
+				6F58DB6F1BD6DE4200B2EE75 /* noise.vert */,
+			);
+			path = shaders_gles;
 			sourceTree = "<group>";
 		};
 		8870759BC9CAEA1E4E9EA3A8 /* core */ = {
@@ -178,6 +259,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				6F58DB5B1BD6DE4200B2EE75 /* bin */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
