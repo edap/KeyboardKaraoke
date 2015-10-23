@@ -45,25 +45,12 @@ void main(){
 	//get our current vertex position so we can use it for the noise
 	vec4 pos = gl_ProjectionMatrix * gl_ModelViewMatrix * gl_Vertex;
     gl_Position = pos;
-	
-	//generate some noise values based on vertex position and the time value which comes in from our OF app
-	float noiseAmntX = noise( vec2(-timeValX + pos.x / 1000.0f, 100.0f), 20.0 );
-	float noiseAmntY = noise( vec2(timeValY + pos.y / 1000.0f, pos.x / 2000.0f), 20.0 );
 
 	//generate noise for our blue pixel value
 	float noiseB = noise( vec2(timeValY * 0.25, pos.y / 2000.0f), 20.0 );
-    float noiseR = noise( vec2(timeValX * 0.25, pos.x / 2000.0f), 20.0 );
-	
-	//finally set the pos to be that actual position rendered
-
 
 	//modify our color
 	vec4 col = gl_Color;
 	col.b += noiseB;
-    //col.g += noiseR;
-    
-    
-    //col.r += noiseC;
-	
 	gl_FrontColor =  col;	
 }

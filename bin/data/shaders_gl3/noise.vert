@@ -5,7 +5,6 @@ in vec2 texcoord;
 
 uniform mat4 modelViewProjectionMatrix;
 
-
 uniform float timeValX;
 uniform float timeValY;
 
@@ -48,16 +47,10 @@ void main(){
     
 	//get our current vertex position so we can modify it
 	vec4 pos = modelViewProjectionMatrix * position;
-	
-	//generate some noise values based on vertex position and the time value which comes in from our OF app
-	float noiseAmntX = noise( vec2(-timeValX + pos.x / 1000.0, 100.0), 20.0 );
-	float noiseAmntY = noise( vec2(timeValY + pos.y / 1000.0, pos.x / 2000.0), 20.0 );
 
 	//generate noise for our blue pixel value
 	float noiseB = noise( vec2(timeValY * 0.25, pos.y / 2000.0), 20.0 );
 
-
-	
 	//finally set the pos to be that actual position rendered
 	gl_Position = pos;
 }
