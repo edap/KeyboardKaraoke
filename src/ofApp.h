@@ -30,6 +30,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
+        int             fontSize;
         ofColor         colorTextToType;
         ofColor         colorTextTyped;
         ofColor         colorBgGradientFirst;
@@ -38,9 +39,15 @@ class ofApp : public ofBaseApp{
         Lyric           lyric;
         Score           score;
         ofTrueTypeFont	font;
-        states currentState;
 
-        ofxDatGuiDropdown* menu;
-        void onDropdownEvent(ofxDatGuiDropdownEvent e);
+private:
+    void applyShader();
+    void setupShader();
+    ofxDatGuiDropdown* menu;
+    void onDropdownEvent(ofxDatGuiDropdownEvent e);
+    states currentState;
+    ofShader shader;
+    bool doShader;
+
 		
 };

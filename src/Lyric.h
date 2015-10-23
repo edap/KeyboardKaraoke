@@ -7,7 +7,7 @@
 class Lyric{
 public:
     Lyric();
-    void setup(string filename, ofColor colorTextToType, ofColor colorTextTyped);
+    void setup(string filename, int fontSize, ofColor colorTextToType, ofColor colorTextTyped);
     void update(int time);
     void draw();
     bool letterCatched(int key);
@@ -25,6 +25,7 @@ public:
     
     int lyricsBoxHeight;
     ofVec2f center;
+    int fontSize;
     ofColor colorTextToType;
     ofColor colorTextTyped;
     
@@ -32,6 +33,5 @@ private:
     void load(string filename);
     void drawErrors();
     ofTrueTypeFont	font;
-    ofShader shader;
-    bool doShader;
+
 };

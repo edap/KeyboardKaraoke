@@ -6,7 +6,7 @@
 class Score{
 public:
     Score();
-    void setup(map<int, string> textWithMilliseconds, ofColor colorTextTyped, ofColor colorTextToType);
+    void setup(map<int, string> textWithMilliseconds, int fontSize, ofColor colorTextTyped, ofColor colorTextToType);
     void onePointMore();
     void draw();
     

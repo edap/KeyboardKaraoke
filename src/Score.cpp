@@ -5,7 +5,7 @@ Score::Score(){
 
 }
 
-void Score::setup(map<int,string> text_with_milliseconds, ofColor _colorTextTyped, ofColor _colorTextToType){
+void Score::setup(map<int,string> text_with_milliseconds, int _fontSize, ofColor _colorTextTyped, ofColor _colorTextToType){
     colorTextTyped = _colorTextTyped;
     colorTextToType = _colorTextToType;
     totPoints = 0;
@@ -17,7 +17,7 @@ void Score::setup(map<int,string> text_with_milliseconds, ofColor _colorTextType
     
     paddingRightTop = ofVec2f(30,30);
     scorePositon = ofVec2f(ofGetWidth(), 0);
-    font.load("BEBAS.ttf", 30);
+    font.load("BEBAS.ttf", _fontSize, true, false, true, 0.4, 72);
 };
 
 void Score::onePointMore(){
@@ -33,7 +33,7 @@ void Score::draw(){
         //draw point to reach
         ofSetColor(colorTextToType.r, colorTextToType.g,colorTextToType.b);
         ofRectangle maxPointsBounds = font.getStringBoundingBox(maxPoints, 0, 0);
-        font.drawString(
+        font.drawStringAsShapes(
                         maxPoints,
                         -maxPointsBounds.width-paddingRightTop.x,
                         (scorePositon.y + paddingRightTop.y+ maxPointsBounds.height)
@@ -42,7 +42,7 @@ void Score::draw(){
         //draw points reached
         ofSetColor(colorTextTyped.r, colorTextTyped.g,colorTextTyped.b);
         ofRectangle pointsNowBounds = font.getStringBoundingBox(pointsNow, 0, 0);
-        font.drawString(
+        font.drawStringAsShapes(
                         pointsNow,
                         -pointsNowBounds.width-maxPointsBounds.width-paddingRightTop.x,
                         (scorePositon.y + paddingRightTop.y+ pointsNowBounds.height)
