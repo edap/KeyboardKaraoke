@@ -33,10 +33,11 @@ Project{
         of.pkgConfigs: []       // list of additional system pkgs to include
         of.includePaths: []     // include search paths
         of.cFlags: []           // flags passed to the c compiler
-        of.cxxFlags: []         // flags passed to the c++ compiler
-        of.linkerFlags: []      // flags passed to the linker
+        of.cxxFlags: ["-std=c++11", "-stdlib=libc++"]         // flags passed to the c++ compiler
+        of.linkerFlags: ["-lc++"]      // flags passed to the linker
         of.defines: []          // defines are passed as -D to the compiler
         // and can be checked with #ifdef or #if in the code
+        of.frameworks: []       // osx only, additional frameworks to link with the project
 
         // other flags can be set through the cpp module: http://doc.qt.io/qbs/cpp-module.html
         // eg: this will enable ccache when compiling

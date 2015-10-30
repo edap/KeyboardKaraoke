@@ -3,8 +3,10 @@
 #include "ofMain.h"
 #include "Player.h"
 #include "Lyric.h"
+#include "Intro.h"
 #include "Score.h"
 #include "ofxDatGui.h"
+#include "GuiTemplate.h"
 #include "States.h"
 
 class ofApp : public ofBaseApp{
@@ -38,6 +40,7 @@ class ofApp : public ofBaseApp{
         Player          player;
         Lyric           lyric;
         Score           score;
+        Intro           intro;
         ofTrueTypeFont	font;
 
 private:

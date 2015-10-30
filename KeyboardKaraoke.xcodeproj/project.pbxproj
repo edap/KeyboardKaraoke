@@ -59,6 +59,7 @@
 		318E7B99B75AD35356835BE9 /* ofxDatGuiTemplates.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiTemplates.h; path = ../../../addons/ofxDatGui/src/templates/ofxDatGuiTemplates.h; sourceTree = SOURCE_ROOT; };
 		422C4E1AAC7EC4D30B17702D /* ofxDatGuiIntObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiIntObject.h; path = ../../../addons/ofxDatGui/src/core/ofxDatGuiIntObject.h; sourceTree = SOURCE_ROOT; };
 		64C563B8158C37E9D07AE29D /* ofxDatGuiFRM.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiFRM.h; path = ../../../addons/ofxDatGui/src/components/ofxDatGuiFRM.h; sourceTree = SOURCE_ROOT; };
+		6F22617B1BDBAEA9006627DA /* GuiTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiTemplate.h; sourceTree = "<group>"; };
 		6F58DB5D1BD6DE4200B2EE75 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		6F58DB5E1BD6DE4200B2EE75 /* BEBAS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BEBAS.ttf; sourceTree = "<group>"; };
 		6F58DB5F1BD6DE4200B2EE75 /* BohemianRhapsody.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BohemianRhapsody.lrc; sourceTree = "<group>"; };
@@ -290,6 +291,7 @@
 				6FBEAC6F1BCEFFDB00A33DED /* Score.cpp */,
 				6FBEAC701BCEFFDB00A33DED /* Score.h */,
 				6F878C8E1BCF0821007811F2 /* States.h */,
+				6F22617B1BDBAEA9006627DA /* GuiTemplate.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

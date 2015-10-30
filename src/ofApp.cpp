@@ -15,6 +15,7 @@ void ofApp::setup(){
     colorBgGradientFirst = ofColor(100,0,117);
     colorBgGradientSecond = ofColor(252,0,94);
     
+    intro.setup();
     player.setup();
     currentState = INTRO;
     setupMenu();
@@ -48,10 +49,18 @@ void ofApp::draw(){
     
     switch (currentState) {
         case INTRO:
+            if( doShader ){
+                applyShader();
+            }
+            ofBackgroundGradient(colorBgGradientFirst, colorBgGradientSecond, OF_GRADIENT_CIRCULAR);
+            intro.draw();
+            if( doShader ){
+                shader.end();
+            }
+
             menu->draw();
             break;
         case PLAY:
-            
             if( doShader ){
                 applyShader();
             }
@@ -85,15 +94,13 @@ void ofApp::keyPressed  (int key){
 void ofApp::setupMenu(){
     vector<string> options = {"BohemianRhapsody", "RadioGaga", "Biclycle"};
 
-    menu = new ofxDatGuiDropdown("SELECT A COLOR", options);
-    menu->setOrigin(ofGetWidth()/2 - menu->getWidth()/2, ofGetHeight()/2 - menu->getHeight()/2 - 100);
-    menu->setOrigin(ofGetWidth()/2 - menu->getWidth()/2, ofGetHeight()/2 - menu->getHeight()/2 - 100);
-
-    // let's set the stripe of each option to its respective color //
-    //for (int i=0; i<menu->size(); i++) menu->getChildAt(i)->setStripeColor(colors[i]);
-
+    menu = new ofxDatGuiDropdown("SELECT A SONG", options);
+    menu->setTemplate(new GuiTemplate());
+    menu->setOpacity(0.5);
+    int fromTop = intro.getPaddingTop();
+    menu->setOrigin(intro.getEndOfTitle() - menu->getWidth(), fromTop);
     menu->onDropdownEvent(this, &ofApp::onDropdownEvent);
-    // finally let's have it open by default //
+    // let's have it open by default
     menu->expand();
 }
 
