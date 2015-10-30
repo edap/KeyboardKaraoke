@@ -8,7 +8,9 @@ public:
     void update();
     void draw();
     int getEndOfTitle();
+    int getBeginningOfTitle();
     int getPaddingTop();
+    int getWidthInstruction();
     
 private:
     ofImage        image;

@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Lyric.h"
 #include "Intro.h"
+#include "End.h"
 #include "Score.h"
 #include "ofxDatGui.h"
 #include "GuiTemplate.h"
@@ -16,23 +17,14 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
         void setupMenu();
-        void setupSong();
+        void setupSong(string songName);
         void startSongFromBeginning();
-        void showFinalMenu();
-
+    
 		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
 		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
     
         int             fontSize;
+        bool            songStarted = false;
         ofColor         colorTextToType;
         ofColor         colorTextTyped;
         ofColor         colorBgGradientFirst;
@@ -41,16 +33,27 @@ class ofApp : public ofBaseApp{
         Lyric           lyric;
         Score           score;
         Intro           intro;
+        End             final;
         ofTrueTypeFont	font;
 
 private:
     void applyShader();
     void setupShader();
-    ofxDatGuiDropdown* menu;
+    void setupExitButton();
+    void setupPlayAgainButton();
+    void backToIntro();
+    void drawPlayMessage();
+    void drawPlay();
+    void drawIntro();
+    void drawFinished();
+    void onButtonEvent(ofxDatGuiButtonEvent e);
     void onDropdownEvent(ofxDatGuiDropdownEvent e);
-    states currentState;
-    ofShader shader;
-    bool doShader;
+    ofxDatGuiDropdown* menu;
+    ofxDatGuiButton*   exitButton;
+    ofxDatGuiButton*   playAgainButton;
+    states             currentState;
+    ofShader           shader;
+    bool               doShader;
 
 		
 };

@@ -5,11 +5,8 @@ void ofApp::setup(){
     // on OSX: if you want to use ofSoundPlayer together with ofSoundStream you need to synchronize buffersizes.
     // use ofFmodSetBuffersize(bufferSize) to set the buffersize in fmodx prior to loading a file.
     fontSize = 50;
-//    colorTextToType = ofColor(54,166,144,127);
-//    colorTextTyped = ofColor(249,64,128,50);
-//    colorBgGradientFirst = ofColor(255,207,117);
-//    colorBgGradientSecond = ofColor(252,116,94);
-    
+    font.load("BEBAS.ttf", fontSize, true, false, true, 0.4, 72);
+    ofSetEscapeQuitsApp(false); // prevent an oF app from closing on the esc-key.
     colorTextToType = ofColor(0,166,144);
     colorTextTyped = ofColor(249,150,0);
     colorBgGradientFirst = ofColor(100,0,117);
@@ -17,20 +14,47 @@ void ofApp::setup(){
     
     intro.setup();
     player.setup();
-    currentState = INTRO;
+    currentState = FINISHED;
     setupMenu();
+    setupExitButton();
+    setupPlayAgainButton();
+    final.setup(score.totPoints);
     setupShader();
     doShader = true;
 };
 
 void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
-    setupSong();
+    cout << e.target->getLabel() << endl;
+    string selectedSong = e.target->getLabel();
+    if (selectedSong == "RADIO GAGA") {
+        setupSong("RadioGaga");
+    };
+    if (selectedSong == "BOHEMIAN RHAPSODY") {
+        setupSong("BohemianRhapsody");
+    };
     currentState = PLAY;
+}
+
+void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
+{
+    cout << e.target << endl;
+    if (e.target == exitButton){
+        cout << "se" << endl;
+        player.stop();
+        ofExit();
+    }
+    if (e.target == playAgainButton){
+        cout << "again" << endl;
+        backToIntro();
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     menu->update();
+    exitButton->update();
+    playAgainButton->update();
+    final.update(score.actualPoints);
 
     if(currentState == PLAY && player.songIsLoaded()){
         if(player.songIsNotFinished()){
@@ -38,62 +62,102 @@ void ofApp::update(){
             player.update();
         }else{
             player.stop();
-            currentState == FINISHED;
+            currentState = FINISHED;
         }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
-    
     switch (currentState) {
         case INTRO:
-            if( doShader ){
-                applyShader();
-            }
-            ofBackgroundGradient(colorBgGradientFirst, colorBgGradientSecond, OF_GRADIENT_CIRCULAR);
-            intro.draw();
-            if( doShader ){
-                shader.end();
-            }
-
-            menu->draw();
+            drawIntro();
             break;
         case PLAY:
-            if( doShader ){
-                applyShader();
-            }
-            ofBackgroundGradient(colorBgGradientFirst, colorBgGradientSecond, OF_GRADIENT_CIRCULAR);
-            player.draw();
-            lyric.draw();
-            score.draw();
-            if( doShader ){
-                shader.end();
-            }
+            drawPlay();
             break;
         case FINISHED:
-            showFinalMenu();
+            drawFinished();
             break;
         default:
             menu->draw();
+            exitButton->draw();
             break;
     }
 }
 
+void ofApp::drawPlay(){
+    if( doShader ){
+        applyShader();
+    }
+    ofBackgroundGradient(colorBgGradientFirst, colorBgGradientSecond, OF_GRADIENT_CIRCULAR);
+    if (songStarted) {
+        player.draw();
+        lyric.draw();
+        score.draw();
+    }else{
+        drawPlayMessage();
+    }
+    if( doShader ){
+        shader.end();
+    }
+}
+
+void ofApp::drawIntro(){
+    if( doShader ){
+        applyShader();
+    }
+    ofBackgroundGradient(colorBgGradientFirst, colorBgGradientSecond, OF_GRADIENT_CIRCULAR);
+    intro.draw();
+    if( doShader ){
+        shader.end();
+    }
+    
+    menu->draw();
+    exitButton->draw();
+}
+
+void ofApp::drawFinished(){
+    if( doShader ){
+        applyShader();
+    }
+    ofBackgroundGradient(colorBgGradientFirst, colorBgGradientSecond, OF_GRADIENT_CIRCULAR);
+    final.draw();
+    if( doShader ){
+        shader.end();
+    }
+    playAgainButton->draw();
+    exitButton->draw();
+}
+
+
 void ofApp::startSongFromBeginning(){
+    songStarted = true;
     player.play();
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed  (int key){
+    cout << key << endl;
+    if(key == 27){ //pressing esc to return to the main menu
+        backToIntro();
+    }
+    if(key == 13 && songStarted == false && currentState == PLAY){ //pressing intro to star to play
+        startSongFromBeginning();
+    }
     if(lyric.letterCatched(key)){
         score.onePointMore();
     }
 }
 
-void ofApp::setupMenu(){
-    vector<string> options = {"BohemianRhapsody", "RadioGaga", "Biclycle"};
+void ofApp::backToIntro(){
+    songStarted = false;
+    player.stop();
+    currentState = INTRO;
+    setupMenu();
+}
 
+void ofApp::setupMenu(){
+    vector<string> options = {"Bohemian Rhapsody", "Radio Gaga", "Biclycle", "Under Pressure"};
     menu = new ofxDatGuiDropdown("SELECT A SONG", options);
     menu->setTemplate(new GuiTemplate());
     menu->setOpacity(0.5);
@@ -101,13 +165,38 @@ void ofApp::setupMenu(){
     menu->setOrigin(intro.getEndOfTitle() - menu->getWidth(), fromTop);
     menu->onDropdownEvent(this, &ofApp::onDropdownEvent);
     // let's have it open by default
-    menu->expand();
+    //menu->expand();
 }
 
-void ofApp::setupSong(){
-    // http://en.cppreference.com/w/cpp/language/default_arguments
-    player.loadSong("BohemianRhapsody.mp3");
-    lyric.setup("BohemianRhapsody.lrc", fontSize, colorTextTyped, colorTextToType);
+void ofApp::setupExitButton(){
+    exitButton = new ofxDatGuiButton("EXIT");
+    exitButton->setTemplate(new GuiTemplate());
+    exitButton->setOpacity(0.5);
+    exitButton->setWidth(70);
+    exitButton->onButtonEvent(this, &ofApp::onButtonEvent);
+    int fromTop = intro.getPaddingTop();
+    exitButton->setOrigin(
+                          intro.getEndOfTitle() - intro.getWidthInstruction()/2,
+                          fromTop
+    );
+}
+
+void ofApp::setupPlayAgainButton(){
+    playAgainButton = new ofxDatGuiButton("PLAY AGAIN");
+    playAgainButton->setTemplate(new GuiTemplate());
+    playAgainButton->setOpacity(0.5);
+    playAgainButton->setWidth(90);
+    playAgainButton->onButtonEvent(this, &ofApp::onButtonEvent);
+    int fromTop = intro.getPaddingTop();
+    playAgainButton->setOrigin(
+                          intro.getBeginningOfTitle() + intro.getWidthInstruction()/2,
+                          fromTop
+                          );
+}
+
+void ofApp::setupSong(string song = "BohemianRhapsody"){
+    player.loadSong(song + ".mp3");
+    lyric.setup(song + ".lrc", fontSize, colorTextTyped, colorTextToType);
     score.setup(lyric.textWithMilliseconds, fontSize, colorTextTyped, colorTextToType);
 }
 
@@ -129,57 +218,20 @@ void ofApp::setupShader(){
 #endif
 }
 
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-    
+void ofApp::drawPlayMessage(){
+    // title
+    string msg = "Press Enter when you are ready to type";
+    ofSetColor(colorTextTyped.r, colorTextTyped.g,colorTextTyped.b);
+    float fontMessageWidth = font.stringWidth(msg);
+    float fontMessageHeight = font.stringHeight(msg);
+    font.drawStringAsShapes(msg,
+                            (ofGetWidth()/2 - fontMessageWidth/2),
+                            (ofGetHeight()/2 + fontMessageHeight/2)
+    );
 }
 
-void ofApp::showFinalMenu(){
-    //show a message with 2 button
-    // one for exit and one to go back to intro and choose another song
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-    startSongFromBeginning();
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-    
-}
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
     setup();
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){
-    
 }
