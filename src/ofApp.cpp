@@ -15,12 +15,12 @@ void ofApp::setup(){
     intro.setup();
     player.setup();
     final.setup();
-    currentState = FINISHED;
+    currentState = INTRO;
     setupMenu();
     setupExitButton();
     setupPlayAgainButton();
     setupShader();
-    doShader = false;
+    doShader = true;
 };
 
 void ofApp::update(){
@@ -222,7 +222,6 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e){
 }
 
 void ofApp::keyPressed  (int key){
-    cout << key << endl;
     if(key == 27){ //pressing esc to return to the main menu
         backToIntro();
     }

@@ -9,7 +9,7 @@ void Intro::setup(){
     fontColor = ofColor(0,166,144);
     screenHeight = ofGetHeight();
     screenWidth = ofGetWidth();
-    paddingTop = 70;
+    paddingTop = 100;
     heightFont = font.stringHeight(title);
     endOfTitle = (screenWidth -font.stringWidth(title))/2 + font.stringWidth(title);
     //img
