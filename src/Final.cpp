@@ -1,11 +1,10 @@
-#include "End.h"
+#include "Final.h"
 
-End::End(){
+Final::Final(){
     
 };
 
-void End::setup(int _totalPoints){
-    defineLevels(_totalPoints);
+void Final::setup(){
     font.load("BEBAS.ttf", 60, true, false, true, 0.4, 72);
     fontColor = ofColor(0,166,144);
     screenHeight = ofGetHeight();
@@ -14,8 +13,7 @@ void End::setup(int _totalPoints){
     currentMessage = youFailMessage;
 }
 
-void End::update(int _actualPoints){
-    cout << currentMessage << endl;
+void Final::update(int _actualPoints){
     if (_actualPoints >= youLooseLevel && _actualPoints < youWinLevel ) {
         currentMessage = youLooseMessage;
     }else if (_actualPoints >= youWinLevel){
@@ -26,23 +24,19 @@ void End::update(int _actualPoints){
 }
 
 
-void End::draw(){
-    // title
+void Final::draw(){
     ofSetColor(fontColor.r, fontColor.g,fontColor.b);
     float fontMessageWidth = font.stringWidth(currentMessage);
     float fontMessageHeight = font.stringHeight(currentMessage);
     font.drawStringAsShapes(currentMessage,
                             (screenWidth - fontMessageWidth)/2,
-                            (ofGetHeight()/2 + fontMessageHeight/2)
+                            (screenHeight/2 + fontMessageHeight/2)
     );
 }
 
-void End::defineLevels(int _totalPoints){
-    int onePercent = _totalPoints / 100;
+void Final::defineLevels(int _totalPoints){
+    int onePercent = _totalPoints / 100.00;
     youWinLevel = onePercent * 90;
     youLooseLevel = onePercent * 60;
     youFailLevel = onePercent * 30;
-    cout << youWinLevel << endl;
-    cout << youLooseLevel << endl;
-    cout << youFailLevel << endl;
 }

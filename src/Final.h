@@ -1,15 +1,16 @@
 #pragma once
 #include "ofMain.h"
 
-class End{
+class Final{
 public:
-    End();
-    void setup(int _totalPoints);
+    Final();
+    void setup();
     void update(int _actualPoints);
     void draw();
+    void defineLevels(int _totalPoints);
     
 private:
-    void defineLevels(int _totalPoints);
+
     ofTrueTypeFont font;
     ofColor        fontColor;
     string         currentMessage;

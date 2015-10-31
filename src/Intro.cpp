@@ -43,10 +43,6 @@ int Intro::getEndOfTitle(){
     return endOfTitle;
 }
 
-int Intro::getBeginningOfTitle(){
-    return (screenWidth -font.stringWidth(title))/2;
-}
-
 int Intro::getWidthInstruction(){
    return font.stringWidth(instruction);
 }

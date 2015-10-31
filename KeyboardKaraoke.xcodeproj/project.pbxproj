@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F590DA31BE3F130001139AD /* End.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F590DA11BE3F130001139AD /* End.cpp */; settings = {ASSET_TAGS = (); }; };
+		6F590DA31BE3F130001139AD /* Final.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F590DA11BE3F130001139AD /* Final.cpp */; settings = {ASSET_TAGS = (); }; };
 		6FBEAC711BCEFFDB00A33DED /* Intro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEAC601BCEFFDB00A33DED /* Intro.cpp */; settings = {ASSET_TAGS = (); }; };
 		6FBEAC721BCEFFDB00A33DED /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEAC621BCEFFDB00A33DED /* Letter.cpp */; settings = {ASSET_TAGS = (); }; };
 		6FBEAC731BCEFFDB00A33DED /* Lyric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEAC641BCEFFDB00A33DED /* Lyric.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -78,8 +78,8 @@
 		6F58DB6F1BD6DE4200B2EE75 /* noise.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
 		6F58DB701BD6DE4200B2EE75 /* verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = verdana.ttf; sourceTree = "<group>"; };
 		6F58DB711BD6DE4200B2EE75 /* KeyboardKaraokeDebug.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = KeyboardKaraokeDebug.app; sourceTree = "<group>"; };
-		6F590DA11BE3F130001139AD /* End.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = End.cpp; sourceTree = "<group>"; };
-		6F590DA21BE3F130001139AD /* End.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = End.h; sourceTree = "<group>"; };
+		6F590DA11BE3F130001139AD /* Final.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Final.cpp; sourceTree = "<group>"; };
+		6F590DA21BE3F130001139AD /* Final.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Final.h; sourceTree = "<group>"; };
 		6F878C8E1BCF0821007811F2 /* States.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = States.h; sourceTree = "<group>"; };
 		6FBEAC601BCEFFDB00A33DED /* Intro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Intro.cpp; sourceTree = "<group>"; };
 		6FBEAC611BCEFFDB00A33DED /* Intro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro.h; sourceTree = "<group>"; };
@@ -295,8 +295,8 @@
 				6FBEAC701BCEFFDB00A33DED /* Score.h */,
 				6F878C8E1BCF0821007811F2 /* States.h */,
 				6F22617B1BDBAEA9006627DA /* GuiTemplate.h */,
-				6F590DA11BE3F130001139AD /* End.cpp */,
-				6F590DA21BE3F130001139AD /* End.h */,
+				6F590DA11BE3F130001139AD /* Final.cpp */,
+				6F590DA21BE3F130001139AD /* Final.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -412,7 +412,7 @@
 				6FBEAC761BCEFFDB00A33DED /* Parser.cpp in Sources */,
 				6FBEAC751BCEFFDB00A33DED /* ofApp.cpp in Sources */,
 				6FBEAC711BCEFFDB00A33DED /* Intro.cpp in Sources */,
-				6F590DA31BE3F130001139AD /* End.cpp in Sources */,
+				6F590DA31BE3F130001139AD /* Final.cpp in Sources */,
 				D3C1C48E59CAA2D68C0DD477 /* ofxDatGuiComponent.cpp in Sources */,
 				6FBEAC781BCEFFDB00A33DED /* Player.cpp in Sources */,
 				6FBEAC741BCEFFDB00A33DED /* main.cpp in Sources */,

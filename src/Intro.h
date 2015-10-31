@@ -8,7 +8,6 @@ public:
     void update();
     void draw();
     int getEndOfTitle();
-    int getBeginningOfTitle();
     int getPaddingTop();
     int getWidthInstruction();
     
@@ -18,7 +17,7 @@ private:
     ofTrueTypeFont font;
     ofColor        fontColor;
     string         instruction = "Type the song as fast as you can";
-    string         title = "The Freddie Mercury Karaoke Keyboard";
+    string         title = "The Freddie Mercury Keyboard Karaoke";
     int screenWidth;
     int screenHeight;
     int endOfTitle;

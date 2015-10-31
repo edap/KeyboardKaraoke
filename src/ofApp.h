@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Lyric.h"
 #include "Intro.h"
-#include "End.h"
+#include "Final.h"
 #include "Score.h"
 #include "ofxDatGui.h"
 #include "GuiTemplate.h"
@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp{
         Lyric           lyric;
         Score           score;
         Intro           intro;
-        End             final;
+        Final           final;
         ofTrueTypeFont	font;
 
 private:
