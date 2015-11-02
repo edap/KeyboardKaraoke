@@ -20,6 +20,7 @@ public:
     ofVec2f positionCurrentSentence;
     map<int, string> textWithMilliseconds;
     map<int,string>::iterator textWithMsIterator;
+    int offset = 500;
     
     vector<Letter> wrongTyped;
     

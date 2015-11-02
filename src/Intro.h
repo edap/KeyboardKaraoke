@@ -5,7 +5,7 @@ class Intro{
 public:
     Intro();
     void setup();
-    void update();
+    void update(float pct);
     void draw();
     int getEndOfTitle();
     int getPaddingTop();
@@ -18,6 +18,10 @@ private:
     ofColor        fontColor;
     string         instruction = "Type the song as fast as you can";
     string         title = "The Freddie Mercury Keyboard Karaoke";
+    ofVec2f startPosition;
+    ofVec2f endPosition;
+    ofVec2f currentPosition;
+    ofVec2f direction;
     int screenWidth;
     int screenHeight;
     int endOfTitle;

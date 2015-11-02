@@ -19,11 +19,14 @@ void Intro::setup(){
         cerr << "loading image failed ...\n";
         
     }
+    //img position
+    currentPosition = ofVec2f(screenWidth - (image.getWidth()/2), 0);
+    endPosition = ofVec2f(screenWidth - (image.getWidth()/2), screenHeight);
     
     mesh.setMode(OF_PRIMITIVE_POINTS);
     int w = image.getWidth();
     int h = image.getHeight();
-    int y_offset = screenHeight - h; //position the img to bottom - left
+    int y_offset = screenHeight - h; //position the img to bottom - center
     int x_offset = (screenWidth - w) / 2;
     for (int x=0; x<w; ++x) {
         for (int y=0; y<h; ++y) {
@@ -35,8 +38,8 @@ void Intro::setup(){
     }
 }
 
-void Intro::update(){
-
+void Intro::update(float pct){
+    currentPosition = endPosition + direction * pct;
 }
 
 int Intro::getEndOfTitle(){

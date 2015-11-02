@@ -6,7 +6,8 @@ void ofApp::setup(){
     // use ofFmodSetBuffersize(bufferSize) to set the buffersize in fmodx prior to loading a file.
     fontSize = 50;
     font.load("BEBAS.ttf", fontSize, true, false, true, 0.4, 72);
-    ofSetEscapeQuitsApp(false); // prevent an oF app from closing on the esc-key.
+    font.setSpaceSize(28.0);
+    //ofSetEscapeQuitsApp(false); // prevent an oF app from closing on the esc-key.
     colorTextToType = ofColor(0,166,144);
     colorTextTyped = ofColor(249,150,0);
     colorBgGradientFirst = ofColor(100,0,117);
@@ -20,7 +21,7 @@ void ofApp::setup(){
     setupExitButton();
     setupPlayAgainButton();
     setupShader();
-    doShader = true;
+    doShader = false;
 };
 
 void ofApp::update(){
@@ -60,7 +61,11 @@ void ofApp::draw(){
 
 // SETUP HELPERS --------------------------------------------------------------
 void ofApp::setupMenu(){
-    vector<string> options = {"Bohemian Rhapsody", "Radio Gaga", "Biclycle", "Under Pressure"};
+    vector<string> options = {
+        "Bohemian Rhapsody",
+        "Killer Queen",
+        "Under Pressure"
+    };
     menu = new ofxDatGuiDropdown("SELECT A SONG", options);
     menu->setTemplate(new GuiTemplate());
     menu->setOpacity(0.5);
@@ -98,7 +103,7 @@ void ofApp::setupPlayAgainButton(){
                                );
 }
 
-void ofApp::setupSong(string song = "BohemianRhapsody"){
+void ofApp::setupSong(string song){
     player.loadSong(song + ".mp3");
     lyric.setup(song + ".lrc", fontSize, colorTextTyped, colorTextToType);
     score.setup(lyric.textWithMilliseconds, fontSize, colorTextTyped, colorTextToType);
@@ -202,11 +207,15 @@ void ofApp::windowResized(int w, int h){
 
 void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
     string selectedSong = e.target->getLabel();
-    if (selectedSong == "RADIO GAGA") {
-        setupSong("RadioGaga");
-    };
+    cout << selectedSong << endl;
     if (selectedSong == "BOHEMIAN RHAPSODY") {
         setupSong("BohemianRhapsody");
+    };
+    if (selectedSong == "UNDER PRESSURE") {
+        setupSong("UnderPressure");
+    };
+    if (selectedSong == "KILLER QUEEN") {
+        setupSong("KillerQueen");
     };
     currentState = PLAY;
 }

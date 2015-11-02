@@ -11,8 +11,8 @@ void Lyric::setup(string _filename, int _fontSize, ofColor _colorTextToType, ofC
     currentSentence = "";
     lyricsBoxHeight = 300;
     font.load("BEBAS.ttf", _fontSize, true, false, true, 0.4, 72);
-    //font.setSpaceSize(6.0);
     //font.setLetterSpacing(1.0);
+    font.setSpaceSize(28.0);
     center = ofVec2f(ofGetWidth()/2, ofGetHeight()/2);
     colorTextTyped = _colorTextTyped;
     colorTextToType = _colorTextToType;
@@ -21,7 +21,7 @@ void Lyric::setup(string _filename, int _fontSize, ofColor _colorTextToType, ofC
 
 
 void Lyric::update(int timeInMS){
-    if (timeInMS >= textWithMsIterator->first) {
+    if (timeInMS >= (textWithMsIterator->first)) {
         //init next sentence
         currentSentence = textWithMsIterator->second;
         string parsed = Parser::stringWithValidChars(currentSentence, "[a-z_0-9]");
