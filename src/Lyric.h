@@ -11,6 +11,7 @@ public:
     void update(int time);
     void draw();
     bool letterCatched(int key);
+    void flush();
     
     string currentSentence;
     string sentenceToType;

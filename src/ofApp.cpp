@@ -7,7 +7,7 @@ void ofApp::setup(){
     fontSize = 50;
     font.load("BEBAS.ttf", fontSize, true, false, true, 0.4, 72);
     font.setSpaceSize(28.0);
-    //ofSetEscapeQuitsApp(false); // prevent an oF app from closing on the esc-key.
+    ofSetEscapeQuitsApp(false); // prevent an oF app from closing on the esc-key.
     colorTextToType = ofColor(0,166,144);
     colorTextTyped = ofColor(249,150,0);
     colorBgGradientFirst = ofColor(100,0,117);
@@ -21,7 +21,7 @@ void ofApp::setup(){
     setupExitButton();
     setupPlayAgainButton();
     setupShader();
-    doShader = false;
+    doShader = true;
 };
 
 void ofApp::update(){
@@ -64,7 +64,10 @@ void ofApp::setupMenu(){
     vector<string> options = {
         "Bohemian Rhapsody",
         "Killer Queen",
-        "Under Pressure"
+        "Under Pressure",
+        "I Want To Break Free",
+        "Bicycle Race",
+        "Don't Stop Me Now"
     };
     menu = new ofxDatGuiDropdown("SELECT A SONG", options);
     menu->setTemplate(new GuiTemplate());
@@ -172,6 +175,7 @@ void ofApp::drawFinished(){
 void ofApp::backToIntro(){
     songStarted = false;
     player.stop();
+    lyric.flush();
     currentState = INTRO;
     setupMenu();
 }
@@ -216,6 +220,15 @@ void ofApp::onDropdownEvent(ofxDatGuiDropdownEvent e){
     };
     if (selectedSong == "KILLER QUEEN") {
         setupSong("KillerQueen");
+    };
+    if (selectedSong == "I WANT TO BREAK FREE") {
+        setupSong("IWantToBreakFree");
+    };
+    if (selectedSong == "BICYCLE RACE") {
+        setupSong("BicycleRace");
+    };
+    if (selectedSong == "DON'T STOP ME NOW") {
+        setupSong("DontStopMeNow");
     };
     currentState = PLAY;
 }

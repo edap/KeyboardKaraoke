@@ -12,7 +12,7 @@ void Lyric::setup(string _filename, int _fontSize, ofColor _colorTextToType, ofC
     lyricsBoxHeight = 300;
     font.load("BEBAS.ttf", _fontSize, true, false, true, 0.4, 72);
     //font.setLetterSpacing(1.0);
-    font.setSpaceSize(28.0);
+    font.setSpaceSize(23.0);
     center = ofVec2f(ofGetWidth()/2, ofGetHeight()/2);
     colorTextTyped = _colorTextTyped;
     colorTextToType = _colorTextToType;
@@ -30,7 +30,9 @@ void Lyric::update(int timeInMS){
         //empty previously typed sentence and errors
         positionReachedInCurrentSentence = 0;
         typedSentenceCorrect.str(string());
-        ++textWithMsIterator;
+        if(textWithMsIterator != textWithMilliseconds.end()){
+            ++textWithMsIterator;
+        }
     }
 };
 
@@ -42,10 +44,8 @@ void Lyric::draw(){
         string toRead = currentSentence;
         ofSetColor(colorTextTyped.r, colorTextTyped.g,colorTextTyped.b);
         ofRectangle readBounds = font.getStringBoundingBox(toRead, 0, 0);
-
         font.drawStringAsShapes(currentSentence, -readBounds.width/2, -readBounds.height );
 
-    
         //typed sentence
         string strCorrect = typedSentenceCorrect.str();
         ofSetColor(colorTextToType.r, colorTextToType.g,colorTextToType.b);
@@ -58,9 +58,12 @@ void Lyric::draw(){
         positionCurrentSentence = ofVec2f(strCorrectHalfWidth, keyCorrectBounds.height/2);
         drawErrors();
 
-    
     ofPopMatrix();
 };
+
+void Lyric::flush(){
+    textWithMilliseconds.clear();
+}
 
 
 bool Lyric::letterCatched(int _key){
@@ -103,7 +106,7 @@ void Lyric::load(string filename){
                 int min = stoi(time.substr(0,2)) * 60000;
                 int secs = stoi(time.substr(3,2)) * 1000;
                 int milliseconds = min + secs;
-                string sentence = Parser::stringWithValidChars(line, "[^0-9_:\\[\\]]");
+                string sentence = Parser::stringWithValidChars(line, "[^0-9_\\.:\\[\\]]");
                 textWithMilliseconds.insert(make_pair(milliseconds, sentence));
             }
         }

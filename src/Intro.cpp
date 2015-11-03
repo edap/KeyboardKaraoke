@@ -6,6 +6,7 @@ Intro::Intro(){
 
 void Intro::setup(){
     font.load("BEBAS.ttf", 60, true, false, true, 0.4, 72);
+    font.setSpaceSize(25.0);
     fontColor = ofColor(0,166,144);
     screenHeight = ofGetHeight();
     screenWidth = ofGetWidth();
