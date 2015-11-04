@@ -1,6 +1,6 @@
 # KeyboardKaraoke
 
->Talking about music is like typing about Karoke
+> *Talking about music is like typing about Karoke*
 
 Frank Zappa
 
