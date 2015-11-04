@@ -1,6 +1,7 @@
 # KeyboardKaraoke
 
-"Talking about music is like typing about Karoke"
+>Talking about music is like typing about Karoke
+
 Frank Zappa
 
 ![Alt text](/screen.png?raw=true "Optional Title")
